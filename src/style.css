@@ -1,0 +1,14 @@
+nav {
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    gap: 10px; /* Add space between links */
+    margin: 20px 0; /* Optional: margin for spacing */
+    max-width: 200px;
+}
+
+nav a {
+    text-decoration: none; /* Remove underline */
+    font-size: 16px;
+    text-transform: uppercase;
+}
+  
