@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import gsap from 'gsap';
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -9,66 +10,20 @@ const scene = new THREE.Scene()
 /**
  * Object
  */
-// const geometry = new THREE.BoxGeometry(1, 1, 1)
-// const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-// const mesh = new THREE.Mesh(geometry, material)
-// scene.add(mesh);
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh);
 
 // mesh.position.set(1, 0.07, 0.5);
-// mesh.position.normalize(); // put to 1 1 1 
-
-// console.log('distance from center of the scene to cube position: ', mesh.position.length());
-
+mesh.position.normalize(); // put to 1 1 1 
 
 // mesh.scale.set(1.2, 1.1, 0.8);
 
-// mesh.rotation.reorder('YXZ'); // order of setting, rotate by y then by x.
+mesh.rotation.reorder('YXZ'); // order of setting, rotate by y then by x.
 // mesh.rotation.set(Math.PI * 0.25, Math.PI * 0.25, 0);
-// better to use quaternion
+// better to use quaternion because of rotation order
 
-
-const group = new THREE.Group();
-scene.add(group);
-
-const cube1 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0xcccccc })
-);
-cube1.position.x = -2;
-group.add(cube1);
-
-const cube2 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x777777 })
-);
-group.add(cube2);
-
-const cube3 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x444444 })
-);
-cube3.position.x = 2;
-group.add(cube3);
-
-const cube4 = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0x333333 })
-);
-cube4.position.y = -0.5;
-cube4.scale.y = 0.01
-cube4.scale.x = 10
-cube4.scale.z = 10
-group.add(cube4);
-
-
-group.position.y = 1;
-group.scale.y = 2;
-group.rotation.y = 1;
-/**
- * Axes helper
- */
-const axesHelper = new THREE.AxesHelper(3); // 3 -  is a length of stroke
-scene.add(axesHelper);
 
 /**
  * Sizes
@@ -83,14 +38,9 @@ const sizes = {
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3;
-camera.position.y = 0.3;
-// camera.position.x = 1;
-
-camera.lookAt(group.position);
 
 scene.add(camera);
 
-console.log('distance from cube to camera: ', group.position.distanceTo(camera.position));
 
 /**
  * Renderer
@@ -99,4 +49,83 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.render(scene, camera)
+
+
+
+/**
+ * Animations
+ * tick - a function which will be called on every next free frame
+ */
+
+/**
+ * V1 with delta time
+ */
+// let prevTime = Date.now();
+
+// const tick = () => {
+//     // problem: the higher frame rate - the faster animation
+//     // time
+//     const currentTime = Date.now();
+//     const deltaTime = currentTime - prevTime;
+
+//     prevTime = currentTime;
+
+//     mesh.rotation.y += 0.001 * deltaTime;
+
+//     // take a picture
+//     renderer.render(scene, camera);
+//     window.requestAnimationFrame(tick);
+// }
+
+// tick();
+
+
+/**
+ * V1 with Clock
+ */
+
+// const clock = new THREE.Clock();
+
+// const tick = () => {
+//     // clock
+//     const elapsedTime = clock.getElapsedTime();
+
+//     // mesh.rotation.y = Math.PI * elapsedTime;
+//     mesh.rotation.y = Math.cos(elapsedTime);
+//     // mesh.position.y = Math.sin(elapsedTime);
+//     // mesh.position.x = Math.cos(elapsedTime);
+//     camera.position.y = Math.sin(elapsedTime);
+//     camera.position.x = Math.cos(elapsedTime);
+//     camera.lookAt(mesh.position);
+
+//     // take a picture
+//     renderer.render(scene, camera);
+//     window.requestAnimationFrame(tick);
+// }
+
+// tick();
+
+
+/**
+ * V3 with GSAP
+ */
+
+gsap.to(mesh.position, {
+    x: 2,
+    duration: 2,
+    delay: 0
+});
+gsap.to(mesh.position, {
+    x: -1,
+    duration: 1,
+    delay: 2
+});
+
+
+const tick = () => {
+    // take a picture
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick);
+}
+
+tick();
