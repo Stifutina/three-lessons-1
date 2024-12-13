@@ -64,7 +64,7 @@ renderer.setSize(sizes.width, sizes.height)
 
 // const tick = () => {
 //     // problem: the higher frame rate - the faster animation
-//     // time
+//     // solution - check time
 //     const currentTime = Date.now();
 //     const deltaTime = currentTime - prevTime;
 
