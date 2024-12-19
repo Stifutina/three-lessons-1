@@ -4,6 +4,8 @@ nav {
     gap: 10px; /* Add space between links */
     margin: 20px 0; /* Optional: margin for spacing */
     max-width: 200px;
+
+    padding: 20px;
 }
 
 nav a {
@@ -11,4 +13,28 @@ nav a {
     font-size: 16px;
     text-transform: uppercase;
 }
-  
+
+.heading {
+    position: fixed;
+    z-index: 2;
+    top: 10px;
+    left: 10px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    overscroll-behavior: none;
+}
+
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
