@@ -1,21 +1,33 @@
-import restart from 'vite-plugin-restart'
+import { defineConfig } from 'vite';
+import restart from 'vite-plugin-restart';
 
-export default {
+export default defineConfig({
     root: 'src/', // Sources files (typically where index.html is)
-    publicDir: '../static/', // Path from "root" to static assets (files that are served as they are)
-    server:
-    {
+    publicDir: '../static/', // Path from "root" to static assets
+    server: {
         host: true, // Open to local network and display URL
-        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
+        open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env), // Open browser if not in sandbox
     },
-    build:
-    {
-        outDir: '../dist', // Output in the dist/ folder
-        emptyOutDir: true, // Empty the folder first
-        sourcemap: true // Add sourcemap
+    build: {
+        outDir: '../dist', // Output to the dist/ folder
+        emptyOutDir: true, // Empty the folder before building
+        sourcemap: true, // Generate source maps
+        rollupOptions: {
+            input: {
+                main: './src/index.html',
+                lesson1: './src/pages/lessons/lesson1.html',
+                lesson2: './src/pages/lessons/lesson2.html',
+                lesson3: './src/pages/lessons/lesson3.html',
+                lesson4: './src/pages/lessons/lesson4.html',
+                lesson5: './src/pages/lessons/lesson5.html',
+                lesson6: './src/pages/lessons/lesson6.html',
+                lesson7: './src/pages/lessons/lesson7.html',
+                lesson8: './src/pages/lessons/lesson8.html',
+                lesson9: './src/pages/lessons/lesson9.html',
+            },
+        },
     },
-    plugins:
-    [
-        restart({ restart: [ '../static/**', ] }) // Restart server on static file change
+    plugins: [
+        restart({ restart: ['../static/**'] }), // Restart on static file changes
     ],
-}
+});
