@@ -4,6 +4,8 @@ import GUI from 'lil-gui';
 import { RGBELoader } from 'three/examples/jsm/Addons.js';
 
 
+// https://gero3.github.io/facetype.js/
+
 /** GUI Debug */
 const gui = new GUI({
     title: 'Global Controls',
