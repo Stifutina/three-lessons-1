@@ -27,6 +27,7 @@ export default defineConfig({
                 lesson10: './src/pages/lessons/lesson10.html',
                 lesson11: './src/pages/lessons/lesson11.html',
                 lesson12: './src/pages/lessons/lesson12.html',
+                lesson13: './src/pages/lessons/lesson13.html',
             },
         },
     },
