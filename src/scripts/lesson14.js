@@ -103,7 +103,7 @@ const generateGalaxy = () => {
     // 2. Material
     material = new THREE.ShaderMaterial({
         uniforms: {
-            pointTexture: { value: textureLoader.load('/textures/particles/1.png') }
+            pointTexture: { value: textureLoader.load('/textures/particles/8.png') }
         },
         vertexShader: `
             attribute float size;
@@ -206,7 +206,10 @@ const clock = new THREE.Clock()
 
 const tick = () =>
 {
-    const elapsedTime = clock.getElapsedTime()
+    const elapsedTime = clock.getElapsedTime();
+
+    // Update galaxy
+    points.rotation.y = elapsedTime * 0.02;
 
     // Update controls
     controls.update()
