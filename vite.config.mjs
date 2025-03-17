@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import glsl from 'vite-plugin-glsl';
 import restart from 'vite-plugin-restart';
 
 export default defineConfig({
@@ -37,10 +38,12 @@ export default defineConfig({
                 lesson20: './src/pages/lessons/lesson20.html',
                 lesson21: './src/pages/lessons/lesson21.html',
                 lesson22: './src/pages/lessons/lesson22.html',
+                lesson23: './src/pages/lessons/lesson23.html',
             },
         },
     },
     plugins: [
         restart({ restart: ['../static/**'] }), // Restart on static file changes
+        glsl(), // Load GLSL files
     ],
 });
