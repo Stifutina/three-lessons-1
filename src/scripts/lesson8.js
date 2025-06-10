@@ -141,7 +141,7 @@ phongMaterial.specular = new THREE.Color(0x1188ff); // color of the reflection
 
 
 /** Toon material */
-/** similar to Phong material but with a toon effect */
+/** similar to Phong material but with a cartoon effect */
 // requires color for shadow and color for light
 const toonMaterial = new THREE.MeshToonMaterial();
 toonMaterial.gradientMap = gradientTexture;
