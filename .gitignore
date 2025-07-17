@@ -6,6 +6,8 @@
 dist
 dist/*
 
+.github
+.github/*
 
 # User-specific files
 *.rsuser
