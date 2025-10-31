@@ -17,16 +17,16 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-const axesHelper = new THREE.AxesHelper();
+// const axesHelper = new THREE.AxesHelper();
 
-axesHelper.position.y += 0.25; // Slightly above the ground to avoid z-fighting
-scene.add(axesHelper);
+// axesHelper.position.y += 0.25; // Slightly above the ground to avoid z-fighting
+// scene.add(axesHelper);
 
 /**
  * Water
  */
 // Geometry
-const waterGeometry = new THREE.PlaneGeometry(20, 20, 512, 512);
+const waterGeometry = new THREE.PlaneGeometry(4, 4, 512, 512);
 
 waterGeometry.deleteAttribute('normal'); // Remove default normals to avoid z-fighting issues
 waterGeometry.deleteAttribute('uv'); // Remove default UVs to avoid z-fighting issues
