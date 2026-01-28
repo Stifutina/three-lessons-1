@@ -8,7 +8,7 @@ import Renderer from './Renderer.js'
 import World from './World/World.js'
 import Resources from './Utils/Resources.js'
 
-import sources from './sources.js'
+import sources from './sources-fox-scene.js'
 
 let instance = null
 
