@@ -13,6 +13,7 @@ export default defineConfig({
         outDir: '../dist', // Output to the dist/ folder
         emptyOutDir: true, // Empty the folder before building
         sourcemap: true, // Generate source maps
+        target: 'esnext', // Don't care about old browsers
         rollupOptions: {
             input: {
                 main: './src/index.html',
